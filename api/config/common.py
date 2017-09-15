@@ -26,7 +26,8 @@ class Common(Configuration):
         # Your apps
         'authentication',
         'users',
-        'recipes'
+        'recipes',
+        'menu'
 
     )
 
