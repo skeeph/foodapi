@@ -7,6 +7,10 @@ class Ingredient(models.Model):
     amount = models.FloatField()
     unit = models.CharField(max_length=10)
 
+
 class Recipe(models.Model):
     uuid = models.UUIDField()
     name = models.CharField(max_length=256)
+    imagePath = models.URLField()
+    description = models.TextField()
+    ingredients = models.ManyToManyField(Ingredient, 'recipes')
