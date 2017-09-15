@@ -1,0 +1,11 @@
+site_name: api
+site_description: Menu Planner Backend
+repo_url: https://github.com/skeeph/foodapi
+site_dir: site
+copyright: Copyright &copy; 2015, <a href="https://github.com/skeeph">skeeph</a>.
+
+pages:
+  - Home: 'index.md'
+  - API:
+    - Authentication: 'api/authentication.md'
+    - Users: 'api/users.md'
