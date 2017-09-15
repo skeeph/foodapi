@@ -10,9 +10,12 @@ from rest_framework.routers import DefaultRouter
 
 # noinspection PyUnresolvedReferences
 from users.views import UserViewSet
+from recipes.views import RecipeViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'recipes', RecipeViewSet)
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
