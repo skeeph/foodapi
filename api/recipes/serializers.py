@@ -24,3 +24,14 @@ class RecipeSerializer(serializers.ModelSerializer):
             ing = Ingredient.objects.create(**ingredient)
             recipe.ingredients.add(ing)
         return recipe
+
+    def update(self, instance, validated_data):
+        ingredients = validated_data.pop('ingredients')
+        instance.name = validated_data.pop('name')
+        instance.id = validated_data.pop('uuid')
+        instance.imagePath = validated_data.pop('imagePath')
+        instance.description = validated_data.pop('description')
+        for ingredient in ingredients:
+            ing = Ingredient.objects.create(**ingredient)
+            # FIXME instance.ingredients.add(ing)
+        return instance
