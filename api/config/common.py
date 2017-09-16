@@ -22,6 +22,7 @@ class Common(Configuration):
         'rest_framework.authtoken',  # token authentication
         'django_rq',                 # asynchronous queuing
         'versatileimagefield',       # image manipulation
+	'corsheaders',               # enable cors
 
         # Your apps
         'authentication',
@@ -34,6 +35,7 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/1.10/topics/http/middleware/
     MIDDLEWARE = (
         'django.contrib.sessions.middleware.SessionMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -211,7 +213,7 @@ class Common(Configuration):
             'rest_framework.permissions.IsAuthenticated',
         ],
         'DEFAULT_AUTHENTICATION_CLASSES': (
-            'rest_framework.authentication.SessionAuthentication',
+            # 'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
         )
     }
@@ -234,3 +236,11 @@ class Common(Configuration):
     # admin template so it may interfere with other apps that modify the
     # default admin template. If you're using such an app, simply remove this.
     RQ_SHOW_ADMIN_LINK = True
+
+    CORS_ORIGIN_WHITELIST = (
+        'google.com',
+        'localhost:4200',
+        '127.0.0.1:9000'
+    )
+
+    CORS_ALLOW_CREDENTIALS = True
