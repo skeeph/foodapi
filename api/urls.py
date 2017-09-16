@@ -14,6 +14,8 @@ from users.views import UserViewSet
 from recipes.views import RecipeViewSet
 # noinspection PyUnresolvedReferences,PyPackageRequirements
 from menu.views import WeekViewSet
+# noinspection PyUnresolvedReferences,PyPackageRequirements
+from users.views import SettingsView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -23,6 +25,7 @@ router.register(r'menu', WeekViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^django-rq/', include('django_rq.urls')),
+    url(r'^api/v1/settings', SettingsView.as_view()),
     url(r'^api/v1/', include('authentication.urls')),
     url(r'^api/v1/', include(router.urls)),
 

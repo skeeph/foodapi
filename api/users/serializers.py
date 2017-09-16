@@ -1,18 +1,16 @@
 from rest_framework import serializers
 
-from .models import User
+from .models import User, Settings
 
 
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ('id', 'username', 'first_name', 'last_name',)
-        read_only_fields = ('username', )
+        read_only_fields = ('username',)
 
 
 class CreateUserSerializer(serializers.ModelSerializer):
-
     def create(self, validated_data):
         # call create_user on user object. Without this
         # the password will be stored in plain text.
@@ -24,3 +22,12 @@ class CreateUserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'password', 'auth_token')
         read_only_fields = ('auth_token',)
         extra_kwargs = {'password': {'write_only': True}}
+
+
+class SettingsSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        return Settings.objects.create(**validated_data)
+
+    class Meta:
+        model = Settings
+        fields = ['apikey', 'project_name']
