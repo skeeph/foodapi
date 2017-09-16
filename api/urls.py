@@ -8,14 +8,17 @@ from django.contrib import admin
 from django.views.generic.base import RedirectView
 from rest_framework.routers import DefaultRouter
 
-# noinspection PyUnresolvedReferences
+# noinspection PyUnresolvedReferences,PyPackageRequirements
 from users.views import UserViewSet
+# noinspection PyUnresolvedReferences,PyPackageRequirements
 from recipes.views import RecipeViewSet
+# noinspection PyUnresolvedReferences,PyPackageRequirements
+from menu.views import WeekViewSet
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'recipes', RecipeViewSet)
-
+router.register(r'menu', WeekViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

@@ -1,3 +1,10 @@
-from django.shortcuts import render
+# noinspection PyUnresolvedReferences,PyPackageRequirements
+from menu.models import Week
+# noinspection PyUnresolvedReferences,PyPackageRequirements
+from menu.serializers import WeekSerializer
+from rest_framework import viewsets
 
-# Create your views here.
+
+class WeekViewSet(viewsets.ModelViewSet):
+    queryset = Week.objects.all()
+    serializer_class = WeekSerializer

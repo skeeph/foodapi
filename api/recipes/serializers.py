@@ -19,11 +19,15 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         ingredients = validated_data.pop('ingredients')
-        recipe = Recipe.objects.create(**validated_data)
-        for ingredient in ingredients:
-            ing = Ingredient.objects.create(**ingredient)
-            recipe.ingredients.add(ing)
-        return recipe
+        uuid = validated_data['uuid']
+        if Recipe.objects.filter(uuid=uuid).count() == 0:
+            recipe = Recipe.objects.create(**validated_data)
+            for ingredient in ingredients:
+                ing = Ingredient.objects.create(**ingredient)
+                recipe.ingredients.add(ing)
+            return recipe
+        else:
+            return Recipe.objects.first()
 
     def update(self, instance, validated_data):
         ingredients = validated_data.pop('ingredients')
