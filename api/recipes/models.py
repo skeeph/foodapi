@@ -20,6 +20,7 @@ class Recipe(models.Model):
     imagePath = models.URLField()
     description = models.TextField()
     ingredients = models.ManyToManyField(Ingredient, 'recipes')
+    publ = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

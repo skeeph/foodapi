@@ -15,7 +15,7 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ('uuid', 'name', 'imagePath', 'description', 'ingredients')
+        fields = ('uuid', 'name', 'imagePath', 'description', 'ingredients', 'publ')
 
     def create(self, validated_data):
         ingredients = validated_data.pop('ingredients')
@@ -35,6 +35,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         instance.id = validated_data.pop('uuid')
         instance.imagePath = validated_data.pop('imagePath')
         instance.description = validated_data.pop('description')
+        instance.publ = validated_data.pop('publ')
         for ingredient in ingredients:
             ing = Ingredient.objects.create(**ingredient)
             # FIXME instance.ingredients.add(ing)
