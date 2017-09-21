@@ -16,6 +16,7 @@ class Ingredient(models.Model):
 @python_2_unicode_compatible
 class Recipe(models.Model):
     uuid = models.UUIDField()
+    user = models.ForeignKey("users.User", related_name='recipes')
     name = models.CharField(max_length=256)
     imagePath = models.URLField()
     description = models.TextField()
