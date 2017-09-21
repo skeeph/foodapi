@@ -19,7 +19,7 @@ from users.views import SettingsView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
-router.register(r'recipes', RecipeViewSet)
+router.register(r'recipes', RecipeViewSet, base_name='recipes')
 router.register(r'menu', WeekViewSet)
 
 urlpatterns = [

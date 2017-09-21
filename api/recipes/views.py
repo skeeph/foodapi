@@ -7,6 +7,9 @@ from recipes.serializers import RecipeSerializer
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
-    queryset = Recipe.objects.all()
+    def get_queryset(self):
+        user = self.request.user
+        return user.get_recipes()
+
     serializer_class = RecipeSerializer
     lookup_field = 'uuid'
