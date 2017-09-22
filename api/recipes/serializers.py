@@ -20,7 +20,9 @@ class RecipeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = None
         request = self.context.get("request")
-        if request and hasattr(request, "user"):
+        if "user" in validated_data:
+            user = validated_data.pop("user")
+        elif request and hasattr(request, "user"):
             user = request.user
 
         ingredients = validated_data.pop('ingredients')
