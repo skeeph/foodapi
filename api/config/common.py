@@ -7,7 +7,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class Common(Configuration):
-
     INSTALLED_APPS = (
         'django.contrib.admin',
         'django.contrib.auth',
@@ -16,13 +15,11 @@ class Common(Configuration):
         'django.contrib.messages',
         'django.contrib.staticfiles',
 
-
         # Third party apps
-        'rest_framework',            # utilities for rest apis
+        'rest_framework',  # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
-        'django_rq',                 # asynchronous queuing
-        'versatileimagefield',       # image manipulation
-	'corsheaders',               # enable cors
+        'django_rq',  # asynchronous queuing
+        'corsheaders',  # enable cors
 
         # Your apps
         'authentication',
@@ -35,7 +32,7 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/1.10/topics/http/middleware/
     MIDDLEWARE = (
         'django.contrib.sessions.middleware.SessionMiddleware',
-	'corsheaders.middleware.CorsMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
         'django.middleware.common.CommonMiddleware',
         'django.middleware.csrf.CsrfViewMiddleware',
         'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -71,8 +68,8 @@ class Common(Configuration):
     LOGIN_REDIRECT_URL = '/'
 
     # Static Files
-    STATIC_ROOT = join(os.path.dirname(BASE_DIR), 'staticfiles')
-    STATICFILES_DIRS = [join(os.path.dirname(BASE_DIR), 'static'), ]
+    STATIC_ROOT = join(os.path.dirname(BASE_DIR), 'static')
+    STATICFILES_DIRS = [join(os.path.dirname(BASE_DIR), 'statics'), ]
     STATIC_URL = '/static/'
     STATICFILES_FINDERS = (
         'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -97,7 +94,7 @@ class Common(Configuration):
                     'django.template.context_processors.tz',
                     'django.contrib.messages.context_processors.messages'
                 ],
-                'loaders':[
+                'loaders': [
                     ('django.template.loaders.cached.Loader', [
                         'django.template.loaders.filesystem.Loader',
                         'django.template.loaders.app_directories.Loader',
@@ -216,19 +213,6 @@ class Common(Configuration):
             # 'rest_framework.authentication.SessionAuthentication',
             'rest_framework.authentication.TokenAuthentication',
         )
-    }
-
-    # Versatile Image Field
-    VERSATILEIMAGEFIELD_SETTINGS = {
-        # The amount of time, in seconds, that references to created images
-        # should be stored in the cache. Defaults to `2592000` (30 days)
-        'cache_length': 2592000,
-        'cache_name': 'versatileimagefield_cache',
-        'jpeg_resize_quality': 70,
-        'sized_directory_name': '__sized__',
-        'filtered_directory_name': '__filtered__',
-        'placeholder_directory_name': '__placeholder__',
-        'create_images_on_demand': False
     }
 
     # django-rq
