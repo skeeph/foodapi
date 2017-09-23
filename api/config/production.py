@@ -96,3 +96,5 @@ class Production(Common):
     }
 
     Common.VERSATILEIMAGEFIELD_SETTINGS['create_images_on_demand'] = False
+
+    DATABASES = values.DatabaseURLValue('postgres://postgres:postgres@db/postgres')
