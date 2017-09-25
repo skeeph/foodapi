@@ -7,13 +7,13 @@ services:
       POSTGRES_PASSWORD: postgres
   web:
     build: .
-    command: bash -c "while ! nc -w 1 -z db 5432; do sleep 0.1; done; ./manage.py migrate; while :; do ./manage.py runserver 0.0.0.0:8000; sleep 1; done"
+    command: bash -c "while ! nc -w 1 -z db 5432; do sleep 0.1; done; ./api/manage.py migrate;service nginx restart; ./api/manage.py runserver 0.0.0.0:8000"
     environment:
       DJANGO_CONFIGURATION: Production
       DJANGO_SECRET_KEY: "БартоломеоДиаш"
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8001:8001"
     depends_on:
       - db

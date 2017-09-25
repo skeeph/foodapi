@@ -222,9 +222,7 @@ class Common(Configuration):
     RQ_SHOW_ADMIN_LINK = True
 
     CORS_ORIGIN_WHITELIST = (
-        'google.com',
-        'localhost:4200',
-        '127.0.0.1:9000'
+        '*'
     )
 
     CORS_ALLOW_CREDENTIALS = True
