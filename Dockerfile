@@ -5,11 +5,23 @@ RUN apt-get update && apt-get install -y build-essential netcat nginx
 ADD requirements.txt /opt/app
 COPY requirements /opt/app/requirements
 
-RUN cd /opt/app && pip install -r requirements.txt && pip install uwsgi
+RUN cd /opt/app && pip install -r requirements.txt && pip install uwsgi && pip install django-nose
+RUN apt-get install -y aria2
 RUN apt-get purge -y build-essential && apt-get autoremove -y
 RUN ln -s /opt/app/api_nginx.conf /etc/nginx/sites-enabled/
 
+RUN mkdir -p /opt/app/frontend && mkdir -p /opt/app/statics
+
+RUN cd /opt/app/frontend \
+        && aria2c "https://khabib.me/menu.tar.gz"\
+        && tar -xvf menu.tar.gz\
+        && mv dist/* . \
+        && rm menu.tar.gz \
+        && rm -rf dist
+
 ADD . /opt/app
+
+RUN python /opt/app/api/manage.py collectstatic --no-input
 
 
 WORKDIR /opt/app
