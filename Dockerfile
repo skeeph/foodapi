@@ -1,7 +1,7 @@
 FROM python:3.6-slim
 
 RUN mkdir /opt/app
-RUN apt-get update && apt-get install -y build-essential nginx aria2
+RUN apt-get update && apt-get install -y build-essential nginx aria2 netcat
 ADD requirements.txt /opt/app
 COPY requirements /opt/app/requirements
 
