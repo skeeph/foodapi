@@ -21,7 +21,6 @@ class User(AbstractUser):
         return self.username
 
 
-@python_2_unicode_compatible
 class Settings(models.Model):
     user = models.OneToOneField(User, related_name="settings")
     apikey = models.CharField(max_length=64)
