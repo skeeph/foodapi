@@ -1,6 +1,5 @@
 import os
 from configurations import values
-from boto.s3.connection import OrdinaryCallingFormat
 from .common import Common
 
 try:
@@ -27,7 +26,6 @@ class Production(Common):
     SECURE_BROWSER_XSS_FILTER = values.BooleanValue(True)
     SESSION_COOKIE_SECURE = values.BooleanValue(False)
     SESSION_COOKIE_HTTPONLY = values.BooleanValue(True)
-    SECURE_SSL_REDIRECT = values.BooleanValue(False)
 
     # Site
     # https://docs.djangoproject.com/en/1.6/ref/settings/#allowed-hosts
