@@ -1,0 +1,16 @@
+web:
+  build:
+    image: foodapi
+    dockerfile_path: Dockerfile
+  environment:
+    DJANGO_CONFIGURATION: Production
+    DJANGO_SECRET_KEY: "БартоломеоДиаш"
+  links:
+    - db
+
+db:
+   image: postgres
+   volumes:
+      - /tmp/data:/var/lib/postgresql/data
+   environment:
+        POSTGRES_PASSWORD: postgres

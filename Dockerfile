@@ -7,7 +7,7 @@ COPY requirements /opt/app/requirements
 
 RUN cd /opt/app && pip install -r requirements.txt \
                 && pip install uwsgi \
-                && pip install django-nose
+                && pip install -r requirements/test.txt
 
 RUN apt-get purge -y build-essential && apt-get autoremove -y
 RUN ln -s /opt/app/api_nginx.conf /etc/nginx/sites-enabled/

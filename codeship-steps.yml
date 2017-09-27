@@ -1,0 +1,9 @@
+- type: serial
+  steps:
+  - name: migrate
+    service: web
+    command: bash -c "while ! nc -w 1 -z db 5432; do sleep 0.1; done; ./api/manage.py migrate;"
+
+  - name: test
+    service: web
+    command: coverage run --source='api' api/manage.py test
