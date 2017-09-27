@@ -2,9 +2,7 @@ web:
   build:
     image: foodapi
     dockerfile_path: Dockerfile
-  environment:
-    DJANGO_CONFIGURATION: Production
-    DJANGO_SECRET_KEY: "БартоломеоДиаш"
+  encrypted_env_file: env.encrypted
   links:
     - db
 

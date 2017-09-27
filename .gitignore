@@ -28,3 +28,9 @@ env
 site
 
 *static*
+codeship.aes
+.env
+Будет удалено keyfile.rsa
+Будет удалено keyfile.rsa.pub
+keyfile.rsa
+keyfile.rsa.pub

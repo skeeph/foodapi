@@ -20,7 +20,7 @@ RUN cd /opt/app/frontend \
         && mv dist/* . \
         && rm menu.tar.gz \
         && rm -rf dist
-
+RUN apt-get install -y ssh
 ADD . /opt/app
 
 RUN python /opt/app/api/manage.py collectstatic --no-input
