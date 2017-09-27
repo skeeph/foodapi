@@ -6,5 +6,8 @@ from rest_framework import viewsets
 
 
 class WeekViewSet(viewsets.ModelViewSet):
-    queryset = Week.objects.all()
+    def get_queryset(self):
+        user = self.request.user
+        return Week.objects.filter(user=user)
     serializer_class = WeekSerializer
+    lookup_field = "num"
